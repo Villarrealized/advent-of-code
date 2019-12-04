@@ -122,10 +122,6 @@ function findIntersections(path1, path2) {
   return path1.filter(p => path2.find(p2 => p.x === p2.x && p.y === p2.y));
 }
 
-function findIntersections(path1, path2) {
-  return path1.filter(p => path2.find(p2 => p.x === p2.x && p.y === p2.y));
-}
-
 // Find the shortest Manhattan distance
 function findClosestIntersectionDistance(intersections) {
   return intersections.map(point => Math.abs(point.x) + Math.abs(point.y))
