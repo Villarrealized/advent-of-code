@@ -17,7 +17,7 @@ Other than the range rule, the following are true:
 How many different passwords within the range given in your puzzle input meet these criteria?
 */
 
-const passwordRange = require('./data');
+const passwordRange = '125730-579381';
 const [low, high] = passwordRange.split('-');
 
 function isAscendingOrEqual(digits) {
