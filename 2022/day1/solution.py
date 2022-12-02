@@ -1,6 +1,3 @@
-"""
-https://adventofcode.com/2022/day/1
-"""
 max_calories: int = 0
 food: list[int] = []
 
@@ -25,10 +22,6 @@ for item in data:
         food.append(int(item))
 
 print(f"Puzzle 1: {max_calories}")
-
-"""
-https://adventofcode.com/2022/day/1#part2
-"""
 
 # Puzzle 2
 food = []

@@ -1,6 +1,3 @@
-"""
-https://adventofcode.com/2022/day/2
-"""
 
 ROCK = 1
 PAPER = 2

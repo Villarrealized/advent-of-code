@@ -1,7 +1,3 @@
-"""
-https://adventofcode.com/2022/day/2#part2
-"""
-
 ROCK = 1
 PAPER = 2
 SCISSORS = 3
