@@ -42,7 +42,3 @@ for line in open("input.txt"):
   match_points.append(calculate_points(line.split()))
 
 print(f"Puzzle 1: {sum(match_points)} points")
-
-
-
-
