@@ -10,7 +10,6 @@ for line in open("input.txt"):
 
   pairs.append(int(f"{numbers[0]}{numbers[-1]}"))
 
-
 print(sum(pairs))
 
 
