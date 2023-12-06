@@ -1,11 +1,10 @@
-
 seeds = []
 maps = []
 
 map = []
 for index, line in enumerate(open("input.txt")):
     if index == 0:
-        name, values = line.split(':')
+        name, values = line.split(":")
         seeds = [int(value) for value in values.strip().split()]
     else:
         if line[0].isalpha():
@@ -25,7 +24,7 @@ for seed in seeds:
         for row in map:
             dest, source, count = row
             offset = dest - source
-            #print(offset)
+            # print(offset)
             if val in range(source, source + count):
                 val += offset
                 break
@@ -35,7 +34,6 @@ for seed in seeds:
 print(min(locations))
 
 
-
 # part 2
 seeds = []
 maps = []
@@ -43,9 +41,9 @@ maps = []
 map = []
 for index, line in enumerate(open("input.txt")):
     if index == 0:
-        name, values = line.split(':')
+        name, values = line.split(":")
         instructions = [int(value) for value in values.strip().split()]
-        for i in range (0, len(instructions), 2):
+        for i in range(0, len(instructions), 2):
             val = instructions[i]
             count = instructions[i + 1]
             seeds.extend(list(range(val, val + count)))
@@ -62,7 +60,7 @@ maps.append(map)
 
 locations = []
 for index, seed in enumerate(seeds):
-    if index in [0, 500_000_000, 1_000_000_000, 2_000_000_000]:
+    if index in [0, 1_000_000, 10_000_000, 100_000_000, 1_000_000_000, 2_000_000_000]:
         print(f"Processing seed {index + 1} of {len(seeds)}")
     val = seed
     for map in maps:
@@ -76,6 +74,3 @@ for index, seed in enumerate(seeds):
     locations.append(val)
 
 print(min(locations))
-
-
-
