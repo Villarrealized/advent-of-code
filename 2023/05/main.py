@@ -1,27 +1,27 @@
 # seeds = []
-# maps = []
+# _maps = []
 
-# map = []
+# _map = []
 # for index, line in enumerate(open("input.txt")):
 #     if index == 0:
 #         name, values = line.split(":")
 #         seeds = [int(value) for value in values.strip().split()]
 #     else:
 #         if line[0].isalpha():
-#             if len(map):
-#                 maps.append(map)
-#             map = []
+#             if len(_map):
+#                 _maps.append(_map)
+#             _map = []
 #         elif line[0].isdigit():
-#             map.append([int(value) for value in line.strip().split()])
+#             _map.append([int(value) for value in line.strip().split()])
 
-# # Add the last map
-# maps.append(map)
+# # Add the last _map
+# _maps.append(_map)
 
 # locations = []
 # for seed in seeds:
 #     val = seed
-#     for map in maps:
-#         for row in map:
+#     for _map in _maps:
+#         for row in _map:
 #             dest, source, count = row
 #             offset = dest - source
 #             # print(offset)
@@ -40,8 +40,8 @@ import tqdm
 import tqdm
 
 seeds = []
-maps = []
-map = []
+_maps = []
+_map = []
 for index, line in enumerate(open("input.txt")):
     if index == 0:
         name, values = line.split(":")
@@ -52,21 +52,21 @@ for index, line in enumerate(open("input.txt")):
             seeds.extend(list(range(val, val + count)))
     else:
         if line[0].isalpha():
-            if len(map):
-                maps.append(map)
-            map = []
+            if len(_map):
+                _maps.append(_map)
+            _map = []
         elif line[0].isdigit():
-            map.append([int(value) for value in line.strip().split()])
+            _map.append([int(value) for value in line.strip().split()])
 
-# Add the last map
-maps.append(map)
+# Add the last _map
+_maps.append(_map)
 
 
 def process(seed):
     val = seed
     count = 1
-    for map in maps:
-        for row in map:
+    for _map in _maps:
+        for row in _map:
             dest, source, count = row
             offset = dest - source
             if val in range(source, source + count):
@@ -74,13 +74,21 @@ def process(seed):
                 count += 1
                 break
 
-    return val
+    yield val
 
-
+import sys
 if __name__ == "__main__":
     length = len(seeds)
     print(f"begin processing {length} seeds")
-    pool = Pool()
-    values = set(tqdm.tqdm(pool.imap_unordered(process, seeds), total=length))
+    # pool = Pool()
+    # for value in tqdm.tqdm(pool.imap_unordered(process, seeds, chunksize=4), total=length):
+    min = sys.maxsize
+    for ready in tqdm.tqdm(map(process, seeds), total=length):
+        for value in ready:
+            if value < min:
+                min = value
+                print(f"new min: {min}")
 
-    print(min(values))
+    print(min)
+
+
