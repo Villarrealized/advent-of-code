@@ -26,7 +26,7 @@ def puzzle(part_two=False):
 
   for line in open("input.txt"):
     opponent, instruction = line.split()
-    total += score_card.get(opponent).get(instruction)
+    total += score_card[opponent][instruction]
 
   print(f"{'Part 1' if not part_two else 'Part 2'}: {total}")
 
