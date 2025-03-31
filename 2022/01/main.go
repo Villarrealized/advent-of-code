@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -33,8 +34,9 @@ func parseInput(input string) (output [][]int) {
 func main() {
 	input := readInput()
 	result := part1(input)
-
+	result2 := part2(input)
 	fmt.Printf("part 1: %v\n", result)
+	fmt.Printf("part 2: %v\n", result2)
 }
 
 func part1(input string) int {
@@ -56,7 +58,25 @@ func part1(input string) int {
 }
 
 func part2(input string) int {
-	// elves := parseInput(input)
+	elves := parseInput(input)
 
-	return 0
+	totals := []int{}
+
+	for _, elf := range elves {
+		sum := 0
+		for _, calories := range elf {
+			sum += calories
+		}
+		totals = append(totals, sum)
+	}
+
+	sort.Slice(totals, func(a, b int) bool {
+		return totals[b] < totals[a]
+	})
+	topThree := 0
+
+	for i := range 3 {
+		topThree += totals[i]
+	}
+	return topThree
 }
